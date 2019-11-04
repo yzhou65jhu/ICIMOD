@@ -1,5 +1,5 @@
-This document shows how to run LIS retrospective simulation on a new domain. We use a 1km run for bangladesh for example.
-1. Create a new simulation folder by copying lis.template folder.
+This document shows how to run a LIS retrospective simulation on a new domain. We use a 1km run for bangladesh for example.
+1. Create a new simulation folder by copying the lis.template folder.
 
 $ cd ~/data1/LISRUN
 $ cp -r lis.template Bangladesh.onekm
@@ -7,13 +7,13 @@ $ export WORKING=~/data1/LISRUN/Bangladesh.onekm  #(This step is not necessary.)
 
 We'll refer ~/data1/LISRUN/Bangladesh.onekm as $WORKING for the rest of this document. 
 
-2. Check the file for output variable list. The file is $WORKING/configures/MODEL_OUTPUT_LIST_RUN.TBL
+2. Check the file for the output variable list. The file is $WORKING/configures/MODEL_OUTPUT_LIST_RUN.TBL
 
 
 3. Create new LDT configure file and modify it for Bangladesh.
 $ mv ldt.config.example ldt.config.bangladesh1km
 
-Change the ldt.config.bangladesh1km as needed. Some possilbe but not all suggestions are listed below.
+Change the ldt.config.bangladesh1km as needed. Some possible but not all suggestions are listed below.
 1) Change the output file name.
 Processed LSM parameter filename:  ./lis_input.bangladesh.1km.nc
 2) Change the log file name.
@@ -28,7 +28,7 @@ Run domain resolution (dx):         0.01
 Run domain resolution (dy):         0.01
 
 
-4. Modify the run_LDT.sh file and run LDT to generate LIS input file.
+4. Modify the run_LDT.sh file and run LDT to generate the LIS input file.
 In $WORKING/run_LDT.sh, change the ldt configure file name. In this case, 
 ./LDT ldt.config.bangladesh1km
 
@@ -58,11 +58,11 @@ Ending day:                                03
 Ending hour:                               00
 Ending minute:                             00
 Ending second:                             00
-2) Change output directory and diagnostic output file.
+2) Change the output directory and diagnostic output file.
 Output directory:                         './Bangla/'
 Diagnostic output file:                   './logs/lislogBangla'
 
-3) Change lis input file name (this is the output of LDT)    
+3) Change LIS input file name (this is the output of LDT)    
 LIS domain and parameter data file:     lis_input.bangladesh.1km.nc
 
 4) Check the met forcing sources.
@@ -81,4 +81,19 @@ Run LIS.
 $ bash run_LIS.sh
 
 7. Check the log files and output files.
-Check log files in the output folder specified in your lis configure file, in this case, $WORKING/logs/lislogBangla.${number_of_core}. Check your LIS output in output folder, in this case, $WORKING/Bangla/SURFACEMODEL.
+Check log files in the output folder specified in your LIS configure file, in this case, $WORKING/logs/lislogBangla.${number_of_core}. Check your LIS output in the output folder, in this case, $WORKING/Bangla/SURFACEMODEL.
+
+
+8. Continue simulation with restart files.
+LIS generally takes a considerable time to finish the simulations. The simulations can be interrupted by all kinds of reasons. When the simulation is interupted, we generally would rather continue the simulation than cold start again from the beginning. We can restart the simulation with restart files most recently generated in the output folder. In this example case, we output the restart file every month. Restart file output frequency can be changed in LIS configure file, 
+Noah-MP.3.6 restart output interval:    1mo
+
+To continue simulation with the restart file, locate the most recent restart file in your output folder, in this case, $WORKING/Bangla/SURFACEMODEL/201906/LIS_RST_NOAHMP36_201906302345.d01.nc. Change the LIS configure file as needed, including
+Start mode:                                restart  #coldstart
+Starting year:                             2019
+Starting month:                            06
+Starting day:                              30
+Starting hour:                             23
+Starting minute:                           45
+Starting second:                           00
+Noah-MP.3.6 restart file:      		   "./Bangla/SURFACEMODEL/201906/LIS_RST_NOAHMP36_201906302345.d01.nc"
