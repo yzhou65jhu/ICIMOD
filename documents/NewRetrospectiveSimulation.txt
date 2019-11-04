@@ -1,0 +1,84 @@
+This document shows how to run LIS retrospective simulation on a new domain. We use a 1km run for bangladesh for example.
+1. Create a new simulation folder by copying lis.template folder.
+
+$ cd ~/data1/LISRUN
+$ cp -r lis.template Bangladesh.onekm
+$ export WORKING=~/data1/LISRUN/Bangladesh.onekm  #(This step is not necessary.)
+
+We'll refer ~/data1/LISRUN/Bangladesh.onekm as $WORKING for the rest of this document. 
+
+2. Check the file for output variable list. The file is $WORKING/configures/MODEL_OUTPUT_LIST_RUN.TBL
+
+
+3. Create new LDT configure file and modify it for Bangladesh.
+$ mv ldt.config.example ldt.config.bangladesh1km
+
+Change the ldt.config.bangladesh1km as needed. Some possilbe but not all suggestions are listed below.
+1) Change the output file name.
+Processed LSM parameter filename:  ./lis_input.bangladesh.1km.nc
+2) Change the log file name.
+LDT diagnostic file:              ./logs/ldt.noahmp.log
+3) Change LIS domain and resolution.
+Map projection of the LIS domain:   latlon
+Run domain lower left lat:          24.115
+Run domain lower left lon:          88.305
+Run domain upper right lat:         26.315
+Run domain upper right lon:         89.305
+Run domain resolution (dx):         0.01
+Run domain resolution (dy):         0.01
+
+
+4. Modify the run_LDT.sh file and run LDT to generate LIS input file.
+In $WORKING/run_LDT.sh, change the ldt configure file name. In this case, 
+./LDT ldt.config.bangladesh1km
+
+Run LDT and check the log file and output file.
+$ bash run_LDT.sh
+
+Check the log file in $WORKING/logs/ldt.noahmp.log.0000. The log file should say "Finished LDT run" at the end of the file if LDT finishes without any error. Check the log file and see whether LDT reads all the files needed. 
+
+Check whether all variables are in the output file, in this case, lis_input.bangladesh.1km.nc.
+
+
+5. Create new LIS configure file and modify it for Bangladesh.
+$ mv lis.config.example lis.config.bangladesh.onekm
+
+Modify the lis.config.bangladesh.onekm as needed. Some possible but not all changes are listed below.
+1) Change start mode, start time and end time.
+Start mode:                                coldstart
+Starting year:                             2019
+Starting month:                            04
+Starting day:                              30
+Starting hour:                             23
+Starting minute:                           45
+Starting second:                           00
+Ending year:                               2019
+Ending month:                              09
+Ending day:                                03
+Ending hour:                               00
+Ending minute:                             00
+Ending second:                             00
+2) Change output directory and diagnostic output file.
+Output directory:                         './Bangla/'
+Diagnostic output file:                   './logs/lislogBangla'
+
+3) Change lis input file name (this is the output of LDT)    
+LIS domain and parameter data file:     lis_input.bangladesh.1km.nc
+
+4) Check the met forcing sources.
+Met forcing sources:                	"GDAS" "LDT-generated"
+GDAS forcing directory:       		./MET_FORCING/GDAS/
+Generated metforcing directory: 	./
+
+5) Check the output varible list file
+Model output attributes file: './configures/MODEL_OUTPUT_LIST_RUN.TBL'
+
+6. Modify the run_LIS.sh file with proper lis configure name and number of cores. 
+In run_LIS.sh, change the line below.
+mpirun -np 16 ./LIS -f lis.config.bangladesh.onekm
+
+Run LIS.
+$ bash run_LIS.sh
+
+7. Check the log files and output files.
+Check log files in the output folder specified in your lis configure file, in this case, $WORKING/logs/lislogBangla.${number_of_core}. Check your LIS output in output folder, in this case, $WORKING/Bangla/SURFACEMODEL.
