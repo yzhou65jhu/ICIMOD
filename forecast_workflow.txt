@@ -1,0 +1,55 @@
+Auther: Yifan Zhou (yzhou65@jhu.edu)
+
+rootDir=/home/kshakya/data1/FORECAST/
+
+This file provides the work flow for forecast LIS CLSM run.
+The script, $rootDir/data1/SCRIPTS/run_forecast.bash, does the job from 2-3. 
+The only thing that needs done manually is step 1. 
+
+#FORCING
+1. Download data (yyyy/mmmdd) to $rootDir/SAForecast_CLSM/FORCING
+
+#Get initial condition
+2a. Copy the restart file from copy file $rootDir/CLSM_Retro/output/OL_big_v2/SURFACEMODEL/yyyymm/LIS_RST_CLSMF25_yyyy(mm-1)(30|31|28|29)2330.d01.nc 
+to 
+$rootDir/SAForecast_CLSM/RSTFILE
+
+2b. Modify the following lines in $rootDir/SAForecast_CLSM/ldt.config.ensemble 
+Input restart filename:      ./RSTFILE/LIS_RST_CLSMF25_yyyy(mm-1)(30|31|28|29)2330.d01.nc 
+Output restart filename:      ./RSTFILE/LIS_enRST_yyyy(mm-1)(30|31|28|29)2330.d01.nc 
+
+#Optional changes
+LDT diagnostic file:
+Number of ensemble per tile (output restart): 4
+
+2c.
+cd $rootDir/SAForecast_CLSM/
+./LDT_LOCAL ldt.config.ensemble
+
+check if the ensemble file is generated in $rootDir/SAForecast_CLSM/RSTFILE
+
+#Run LIS
+3a. Modify the lis configure: $rootDir/SAForecast_CLSM/lis.config.ensemble
+starting year:  yyyy
+starting month: mm
+starting day:   01
+
+Ending year:    yyyy
+Ending month:   mm+1(+2)
+Ending day:     28|29|30|31
+
+output directory:   "./CLSM_EN_yyyymm"
+CLSM F2.5 restart file:     ./RSTFILE/LIS_enRST_2018(mm-1)(28|29|30|31)2330.d01.nc
+
+Optional:
+Number of ensembles per tile:    4
+Diagnostic output file:    "./logs/log_yyyymm/lislog"
+Number of processors along x:            4
+Number of processors along y:            4
+#remember to change the mpirun command to match the cores
+
+3b. RunLIS
+mpirun -np 16 ./LIS_LOCAL -f lis.config.ensemble
+
+The output will be in CLSM_EN_yyyymm
+

@@ -1,0 +1,40 @@
+starting to fetch data
+Mon Mar  5 14:56:43 +0545 2018
+--2018-03-05 14:56:43--  http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/
+Resolving nomads.ncep.noaa.gov (nomads.ncep.noaa.gov)... 140.90.101.62
+Connecting to nomads.ncep.noaa.gov (nomads.ncep.noaa.gov)|140.90.101.62|:80... connected.
+HTTP request sent, awaiting response... 
+  HTTP/1.1 200 OK
+  Date: Mon, 05 Mar 2018 09:11:44 GMT
+  Server: Apache
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Cache-Control: max-age=14400
+  Expires: Mon, 05 Mar 2018 13:11:44 GMT
+  Vary: Accept-Encoding
+  Content-Length: 4826
+  Keep-Alive: timeout=300, max=100
+  Connection: Keep-Alive
+  Content-Type: text/html;charset=UTF-8
+Length: 4826 (4.7K) [text/html]
+Saving to: ‘index.html’
+
+     0K ....                                                  100%  167K=0.03s
+
+2018-03-05 14:56:44 (167 KB/s) - ‘index.html’ saved [4826/4826]
+
+Last-modified header missing -- time-stamps turned off.
+2018-03-05 14:56:55 URL:http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gdas.20180224/ [34289] -> "gdas.20180224/index.html.tmp" [1]
+http://nomads.ncep.noaa.gov/robots.txt:
+2018-03-05 14:56:55 ERROR 404: Not Found.
+Last-modified header missing -- time-stamps turned off.
+2018-03-05 14:56:56 URL:http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/ [4826/4826] -> "index.html.tmp" [1]
+2018-03-05 15:09:37 URL:http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gdas.20180224/gdas.t00z.sfluxgrbf03.grib2 [209729977/209729977] -> "gdas.20180224/gdas.t00z.sfluxgrbf03.grib2" [1]
+2018-03-05 15:18:06 URL:http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gdas.20180224/gdas.t06z.sfluxgrbf00.grib2 [200366629/200366629] -> "gdas.20180224/gdas.t06z.sfluxgrbf00.grib2" [1]
+2018-03-05 15:25:26 URL:http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gdas.20180224/gdas.t06z.sfluxgrbf09.grib2 [211046653/211046653] -> "gdas.20180224/gdas.t06z.sfluxgrbf09.grib2" [1]
+2018-03-05 15:34:33 URL:http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gdas.20180224/gdas.t12z.sfluxgrbf06.grib2 [219997823/219997823] -> "gdas.20180224/gdas.t12z.sfluxgrbf06.grib2" [1]
+2018-03-05 15:43:49 URL:http://nomads.ncep.noaa.gov/pub/data/nccf/com/gfs/prod/gdas.20180224/gdas.t18z.sfluxgrbf03.grib2 [210977646/210977646] -> "gdas.20180224/gdas.t18z.sfluxgrbf03.grib2" [1]
+FINISHED --2018-03-05 15:43:50--
+Total wall clock time: 47m 6s
+Downloaded: 7 files, 1003M in 46m 51s (366 KB/s)

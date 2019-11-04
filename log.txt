@@ -1,0 +1,8 @@
+updating configure file
+Updating done
+201201
+2018072218
+Running LIS...
+Tue Jul 24 03:07:45 +0545 2018
+Tue Jul 24 03:07:46 +0545 2018
+done.
