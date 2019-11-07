@@ -1,6 +1,8 @@
 ##Iportant to set environment for wgrib2 and cnvgrib!!!
 #source ~/.bash_profile
 #source /home/kshakya/.bashrc
+ulimit -v unlimited
+ulimit -s unlimited
 export PATH=$PATH:/home/uupadhyaya/programs/gnu/ncep/bin
 
 file=$1

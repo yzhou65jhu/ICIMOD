@@ -20,8 +20,6 @@ set SCRIPTS = /data1/SCRIPTS/Retro_NoahMP_5km			   # Replace this with a folder 
 # Download and place raw data in LOCAL2
 cd $LOCAL2
 
-# Since files are downloaded 4 times/day, avoid re-processing the files
-# that are already processed
 
 ## A) limit days to process
 # set gdasdir = `ls | grep -e gdas | cut -c 1-13 | tail -1`
@@ -43,7 +41,9 @@ while ( $jj <= $#gdasdir )
 		echo "name:" $DATA/$dirname/$yyyymmdd$hh.gdas1.sfluxgrbf$fh.sg
 		## RENAME and SAVE original GRIB2 data (same filename as GRIB1)
 		mkdir -p $DATA2/$dirname
-		cp -vp $pfile $DATA2/$dirname/$yyyymmdd$hh.gdas1.sfluxgrbf$fh.sg
+		if ( ! -e $DATA2/$dirname/$yyyymmdd$hh.gdas1.sfluxgrbf$fh.sg ) then
+			cp -vp $pfile $DATA2/$dirname/$yyyymmdd$hh.gdas1.sfluxgrbf$fh.sg
+		endif
 		## extract and conver to GRIB1 
 		if ( ! -e $DATA/$dirname/$yyyymmdd$hh.gdas1.sfluxgrbf$fh.sg ) then
                         echo "we are in $DATA/$dirname/$yyyymmdd$hh.gdas1.sfluxgrbf$fh.sg"
@@ -56,7 +56,7 @@ while ( $jj <= $#gdasdir )
 			## double check the file size
 			set fsize = `ls -l $DATA/$dirname/$yyyymmdd$hh.gdas1.sfluxgrbf$fh.sg | awk '{print $6}'`
 			echo 'fsize = '$fsize
-			if ( $fsize > 0 ) then
+			if ( $fsize > 6000000 ) then
 				echo 'file is ok...' 
 			else
 				echo '<< corrupt file -> removing>>' 

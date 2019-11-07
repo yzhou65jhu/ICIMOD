@@ -1,6 +1,6 @@
 #!/bin/sh
 
-yyyy=2019
+yyyy=2001
 mmmdd=oct28
 
 export WORKING=/data1/LISRUN/Forecast/

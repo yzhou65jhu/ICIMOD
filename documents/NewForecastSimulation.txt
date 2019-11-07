@@ -1,0 +1,20 @@
+This document shows how to make a forecast with a new initial date. This document will use initial date of oct28 2019 as an example to illustrate the process.
+
+1. Make a copy of forecast template scripts. 
+$ cd ~/data1/SCRIPTS/Forecast/
+$ cp -r template 2019.oct28/
+
+2. Change the initial date in the new script folder.
+
+$ cd ~/data1/SCRIPTS/Forecast/2019.oct28/
+$ vi 999.RunAll.sh
+Then change the first line to: yyyy=2019
+change the second line to: mmmdd=oct28
+
+Run 999.RunAll.sh
+$ bash RunAll.sh
+
+3. The forecast process generally takes several days. If process stops at any step, check the log file in that step. If the process stops at the last step (i.e. LIS simulation). Continue the simulation by excuting 4.PrepareForLIS.sh
+
+$ bash 4.PrepareForLIS.sh
+
