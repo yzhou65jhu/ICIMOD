@@ -4,7 +4,7 @@
 
 
 #Set initial date of the forecast
-yyyy=2001
+yyyy=2019
 mmmdd=oct28
 
 #Set necessary paths

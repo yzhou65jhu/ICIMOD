@@ -3,7 +3,7 @@
 
 
 #Set forecast initial date. This should be changed for every forecast.
-yyyy=2001
+yyyy=2019
 mmmdd=oct28
 
 #Set folder paths.

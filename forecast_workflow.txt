@@ -1,4 +1,4 @@
-Auther: Yifan Zhou (yzhou65@jhu.edu)
+Author: Yifan Zhou (yzhou65@jhu.edu)
 
 rootDir=/home/kshakya/data1/FORECAST/
 

@@ -9,7 +9,7 @@ export GARDRUN=$WORKING/GARDRUN/                #Folder for all GARD simulations
 export SCRIPTS=`pwd`
 
 #Setting date of the GEOS5 forecast. Change this for every forecast.
-yyyy=2001
+yyyy=2019
 mmmdd=oct28
         
 mkdir -p $GARDRUN/$yyyy/$mmmdd
